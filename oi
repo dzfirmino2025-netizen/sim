@@ -1,0 +1,50 @@
+local Players = game:GetService("Players")
+local RunService = game:GetService("RunService")
+local LocalPlayer = Players.LocalPlayer
+local Camera = workspace.CurrentCamera
+
+-- Função para criar ESP em um jogador
+function CreateESP(player)
+    if player == LocalPlayer then return end -- Ignora o próprio jogador
+
+    local character = player.Character or player.CharacterAdded:Wait()
+    local humanoidRootPart = character:WaitForChild("HumanoidRootPart")
+    local head = character:WaitForChild("Head")
+
+    -- Cria uma caixa ESP
+    local box = Instance.new("BoxHandleAdornment")
+    box.Size = Vector3.new(4, 6, 1)
+    box.Color3 = Color3.fromRGB(255, 0, 0)  -- Vermelho
+    box.Adornee = humanoidRootPart
+    box.AlwaysOnTop = true
+    box.ZIndex = 10
+    box.Parent = humanoidRootPart
+
+    -- Cria um texto com o nome do jogador
+    local textLabel = Instance.new("BillboardGui")
+    textLabel.Size = UDim2.new(0, 100, 0, 40)
+    textLabel.StudsOffset = Vector3.new(0, 3.5, 0)
+    textLabel.Adornee = head
+    textLabel.Parent = head
+
+    local txt = Instance.new("TextLabel")
+    txt.Size = UDim2.new(1, 0, 1, 0)
+    txt.BackgroundTransparency = 1
+    txt.Text = player.Name
+    txt.TextColor3 = Color3.fromRGB(255, 255, 255)
+    txt.TextScaled = true
+    txt.Parent = textLabel
+end
+
+-- Aplica ESP a todos os jogadores
+Players.PlayerAdded:Connect(function(player)
+    player.CharacterAdded:Connect(function()
+        CreateESP(player)
+    end)
+end)
+
+for _, player in ipairs(Players:GetPlayers()) do
+    if player.Character then
+        CreateESP(player)
+    end
+end
