@@ -1,50 +1,10 @@
-local Players = game:GetService("Players")
-local RunService = game:GetService("RunService")
-local LocalPlayer = Players.LocalPlayer
-local Camera = workspace.CurrentCamera
+O crescente uso de cigarros eletrônicos, ou vapes, entre jovens configura um grave problema de saúde pública que desafia autoridades, educadores e famílias. Embora inicialmente apresentados como uma alternativa menos nociva ao cigarro convencional, esses dispositivos têm se mostrado altamente prejudiciais, especialmente para adolescentes, que são o principal público-alvo das estratégias de marketing dessas empresas. Assim, combater o uso de cigarros eletrônicos entre jovens exige ações integradas que envolvam regulamentação rigorosa, educação preventiva e fiscalização efetiva.
 
--- Função para criar ESP em um jogador
-function CreateESP(player)
-    if player == LocalPlayer then return end -- Ignora o próprio jogador
+Em primeiro lugar, é fundamental reconhecer que o cigarro eletrônico não é uma alternativa segura. Conforme apontado pela Organização Mundial da Saúde (OMS) e pela Agência Nacional de Vigilância Sanitária (Anvisa), esses dispositivos liberam substâncias tóxicas que podem causar câncer, doenças cardíacas e comprometimento do desenvolvimento cerebral em jovens. O relato de Gabriel Nogueira Souza, que sofreu broncopneumonia e enfisema pulmonar após usar vape, evidencia os riscos reais e irreversíveis à saúde. Portanto, a desinformação e a falsa ideia de que o vape é inofensivo contribuem para a popularização do produto entre adolescentes, o que demanda uma resposta educativa contundente.
 
-    local character = player.Character or player.CharacterAdded:Wait()
-    local humanoidRootPart = character:WaitForChild("HumanoidRootPart")
-    local head = character:WaitForChild("Head")
+Além disso, o marketing agressivo e a propaganda massiva nas redes sociais, muitas vezes por influenciadores digitais, têm um papel decisivo na atração dos jovens para o consumo desses dispositivos. A facilidade de acesso e a ausência de cheiro característico tornam o uso do vape mais discreto, dificultando o controle por parte de pais e escolas. Assim, a fiscalização da comercialização e a proibição da propaganda são medidas essenciais para conter essa expansão. A decisão da Anvisa de manter a proibição da fabricação, importação e venda dos cigarros eletrônicos no Brasil é um passo importante, mas precisa ser acompanhada de mecanismos eficazes de fiscalização e punição para o comércio ilegal.
 
-    -- Cria uma caixa ESP
-    local box = Instance.new("BoxHandleAdornment")
-    box.Size = Vector3.new(4, 6, 1)
-    box.Color3 = Color3.fromRGB(255, 0, 0)  -- Vermelho
-    box.Adornee = humanoidRootPart
-    box.AlwaysOnTop = true
-    box.ZIndex = 10
-    box.Parent = humanoidRootPart
+Diante desse cenário, uma proposta de intervenção eficaz deve contemplar ações educativas, regulatórias e de fiscalização. O Ministério da Saúde, em parceria com o Ministério da Educação, pode implementar programas escolares que abordem os riscos do uso de cigarros eletrônicos, utilizando linguagem acessível e recursos audiovisuais para sensibilizar os jovens. Paralelamente, a Anvisa deve intensificar a fiscalização nas fronteiras e pontos de venda, além de promover campanhas públicas contra o uso do vape, especialmente nas redes sociais. Por fim, é imprescindível envolver famílias e comunidades em rodas de conversa e oficinas que fortaleçam a conscientização sobre os danos causados por esses dispositivos, respeitando os direitos humanos e promovendo a saúde coletiva.
 
-    -- Cria um texto com o nome do jogador
-    local textLabel = Instance.new("BillboardGui")
-    textLabel.Size = UDim2.new(0, 100, 0, 40)
-    textLabel.StudsOffset = Vector3.new(0, 3.5, 0)
-    textLabel.Adornee = head
-    textLabel.Parent = head
+Em suma, o combate ao uso de cigarros eletrônicos entre jovens é um desafio complexo que exige a conjugação de esforços educativos, regulatórios e sociais. Somente por meio de uma atuação integrada e contínua será possível proteger a saúde das novas gerações e frear o avanço desse problema que ameaça o futuro da juventude brasileira.
 
-    local txt = Instance.new("TextLabel")
-    txt.Size = UDim2.new(1, 0, 1, 0)
-    txt.BackgroundTransparency = 1
-    txt.Text = player.Name
-    txt.TextColor3 = Color3.fromRGB(255, 255, 255)
-    txt.TextScaled = true
-    txt.Parent = textLabel
-end
-
--- Aplica ESP a todos os jogadores
-Players.PlayerAdded:Connect(function(player)
-    player.CharacterAdded:Connect(function()
-        CreateESP(player)
-    end)
-end)
-
-for _, player in ipairs(Players:GetPlayers()) do
-    if player.Character then
-        CreateESP(player)
-    end
-end
